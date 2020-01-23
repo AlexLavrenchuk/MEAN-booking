@@ -20,6 +20,7 @@ import { BulletinService } from './_shared/services/bulletin.service';
 import { HeaderService } from './_shared/services/header.service';
 import { AlertService } from './_shared/services/alert.service';
 import { ModalService } from './_shared/services/modal.service';
+import { EventsService } from './_shared/services/events.service';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { ModalService } from './_shared/services/modal.service';
     HeaderService,
     AlertService,
     ModalService,
+    EventsService
   ],
   bootstrap: [AppComponent]
 })

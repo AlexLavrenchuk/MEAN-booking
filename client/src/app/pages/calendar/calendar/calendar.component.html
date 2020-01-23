@@ -1,1 +1,33 @@
-<p>calendar works!</p>
+<h2 class="title">calendar</h2>
+
+<form [formGroup]="addFormEvent" (ngSubmit)="onSubmit()" class="form-container">
+  <mat-form-field>
+    <input matInput placeholder="Title">
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="start">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field>
+    <mat-select placeholder="end">
+      <mat-option value="option">Option</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
+
+<div class="board">
+  <app-loader class="loader" *ngIf="loader"></app-loader>
+  <ul class="time-list" *ngIf="!loader">
+    <li class="container-to-event">
+      <div class="event" [ngStyle]="{'top': '20px'}">
+        <p>task name</p>
+      </div>
+    </li>
+    <li class="time-space" *ngFor="let set of timeSet; index as i; trackBy: trackByFn">
+      <span class="time">{{set.time}}</span>
+    </li>
+  </ul>
+</div>

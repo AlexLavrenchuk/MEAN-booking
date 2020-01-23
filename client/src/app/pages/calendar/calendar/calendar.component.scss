@@ -1,0 +1,44 @@
+.loader {
+  width: 20px;
+  margin: 0 auto;
+  display: block;
+}
+
+.title {
+  text-align: center;
+  margin-bottom: 10px;
+}
+.form-container {
+  display: flex;
+  justify-content: space-between;
+}
+.time-list {
+  position: relative;
+  .container-to-event {
+    position: absolute;
+    top:0;
+    left: 45px;
+    right: 0;
+    bottom: 0;
+    border: 1px solid red;
+    z-index: 1;
+    .event {
+      background-color: #E2ECF5;
+      border-left: 3px solid #6E9ECF;
+      position: absolute;
+      height: 30px;
+      width: 100%;
+    }
+  }
+}
+.time-space {
+  border-top: 1px solid black;
+  padding-left: 45px;
+  position: relative;
+  height: 50px;
+}
+.time {
+  position: absolute;
+  top: 0;
+  left: 0;
+}

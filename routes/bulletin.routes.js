@@ -13,6 +13,7 @@ router.get("/getAll", async (req, res)=> {
     const bulletinAll = await Bulletin.find();
     
     res.json(bulletinAll);
+
   } catch (e) {
     res.status(500).json({massage: "Something went wrong"});
   }

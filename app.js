@@ -20,6 +20,7 @@ app.use(express.static('public'));
 
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/bulletin", require("./routes/bulletin.routes"));
+app.use("/api/event", require("./routes/event.routes"));
 app.use("/api/c", require("./routes/console.log"));
 
 const PORT = config.get("port") || 5000;
