@@ -1,0 +1,39 @@
+@import './../../../../assets/sass/vars';
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 3rem;
+  background-color: $headerBackground;
+
+  .logo {
+    max-width: 3rem;
+    a {
+      display: block;
+    }
+  }
+
+  &-section {
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin: 0 0 0 1.5rem;
+      &-name {
+        font-size: 1.5rem;
+      }
+      &-image {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: 1px solid $liteBlack;
+        overflow: hidden;
+        margin: 0 0 0 .5rem;
+      }
+    }
+  }
+}
+.header-left {
+  display: flex;
+  align-items: center;
+}

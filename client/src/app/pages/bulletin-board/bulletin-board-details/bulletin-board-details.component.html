@@ -1,0 +1,62 @@
+<main class="details">
+
+  <section class="action">
+    <button mat-raised-button class="button" type="button" (click)="goToBack()">
+      <mat-icon>arrow_back_ios</mat-icon>
+      <span>back</span>
+    </button>
+  </section>
+
+  <section class="container-template">
+    <div *ngIf="slidesShow; then sliderBlock else imageBlock"></div>
+
+    <ng-template #sliderBlock>
+      <div class="slider">
+        <ngx-slick-carousel
+          class="carousel" 
+          #slickModal="slick-carousel" 
+          [config]="slideConfig" 
+
+          (init)="slickInit($event)"
+          (breakpoint)="breakpoint($event)"
+          (afterChange)="afterChange($event)"
+          (beforeChange)="beforeChange($event)"
+        >
+        
+          <div class="slide" ngxSlickItem *ngFor="let slide of slides; index as i;" [attr.data-image_id]="i">
+            <img [attr.data-lazy]="slide.img" alt="slide">
+          </div>
+        </ngx-slick-carousel>
+      </div>
+    </ng-template>
+
+    <ng-template #imageBlock>
+      <div class="slider">
+        <div class="slide">
+          <img src="{{slides[0]?.img || 'assets/images/picture/noimage.png'}}" alt="slide">
+        </div>
+      </div>
+      
+    </ng-template>
+    
+
+    <div class="bulletin">
+      <div class="bulletin-description">
+        <p>{{bulletin?.descriptionText}}</p>
+      </div>
+    </div>
+  </section>
+  
+
+</main>
+
+
+
+
+
+
+<!--  
+<button (click)="addSlide()">Add</button>
+<button (click)="removeSlide()">Remove</button>
+<button (click)="slickModal.slickGoTo(2)">slickGoto 2</button>
+<button (click)="slickModal.unslick()">unslick</button> -->

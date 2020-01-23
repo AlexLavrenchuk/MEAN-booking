@@ -1,0 +1,5 @@
+{
+  "port": 5000,
+  "jwtSecret": "secret line for token",
+  "mongoUri": "mongodb+srv://ProjectBookingDB:6dXLjoXAE6LI0TsF@cluster0-mepul.mongodb.net/app?retryWrites=true&w=majority"
+}

@@ -1,0 +1,30 @@
+<header class="header">
+
+  <section class="header-section">
+    <div class="logo">
+      <a routerLink="/">
+        <img src="/assets/images/logo/LogoSample_ByTailorBrands.jpg" alt="logo">
+      </a>
+    </div>
+  </section>
+  
+  <app-navigation></app-navigation>
+
+  <section class="header-section header-left">
+    <div class="action">
+      <button mat-raised-button class="view-action" type="button" (click)="logoutUser()">
+        logout
+      </button>
+    </div>
+    <div class="user-info">
+
+      <a routerLink="/cabinet" class="user-info-name">{{currentUser?.userName}}</a>
+
+      <div class="user-info-image">
+        <img src="{{userAvatar}}" alt="avatar">
+      </div>
+      
+    </div>
+  </section>
+
+</header>

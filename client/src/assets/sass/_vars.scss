@@ -1,0 +1,79 @@
+//color
+$white:           #ffffff;
+$black:           #000000;
+$blue:            #0000ff;
+$yellow:          #fed400;
+$green:           #008000;
+$liteBlack:       #131313;
+$liteRed:         #ff0036;
+
+$gray100:         #f7f7f7;
+$gray200:         #e7e7e7;
+$gray300:         #a4a4a4;
+$gray400:         #505050;
+$gray500:         #262626;
+
+//outline color
+$outlineColor:    #4D90FE;
+
+//font-weight
+$thinFont:        100;
+$extraLightFont:  200;
+$lightFont:       300;
+$regularFont:     400;
+$mediumFont:      500;
+$semiBoldFont:    600;
+$boldFont:        700;
+$extraBoldFont:   800;
+$blackFont:       900;
+
+//figure
+$octagonHalfDown: polygon(100% 0, 100% 45%, 75% 100%, 25% 100%, 0 50%, 0 0);
+$hexagon: polygon(75% 0, 100% 50%, 75% 100%, 25% 100%, 0 50%, 25% 0);
+$hexagonHalfDown: polygon(100% 50%,75% 100%,25% 100%,0 50%);
+$cornerRibbon: polygon(29% 0%, 70% 0%, 100% 95%, 100% 135%, 90% 100%, 8.4% 100%, 0 128%, 0 95%);
+
+
+/////////////////
+/////setting/////
+/////////////////
+
+/* Theme UI */
+$primaryBackgroundColor: $white;
+$primaryFontColor: $black;
+
+// color
+$primaryColor: #7fc7ff;
+$secondColor: $gray300;
+
+//font-family
+$primaryFontFamily: 'Raleway', sans-serif;
+$secondFontFamily: 'Lato', sans-serif;
+$extraFontFamily: 'orange juice', sans-serif;
+
+//box-shadow
+$primaryShadow: 2px 2px 15px 0 rgba(0,0,0,.3);
+$searchInputShadow: 0 3px 1px -2px rgba(0,0,0,.2), 0 2px 2px 0 rgba(0,0,0,.14), 0 1px 5px 0 rgba(0,0,0,.12);
+
+//header
+$headerBackground: $primaryColor;
+
+//card 
+$cardBgColor: $primaryBackgroundColor;
+$cardShadow: $primaryShadow;
+
+//alert
+$alertBgColor: $primaryBackgroundColor;
+$alertShadow: $primaryShadow;
+$alertColorSuccess: $green;
+$alertShadowSuccess: 2px 2px 15px 0 $green;
+$alertColorDanger: $liteRed;
+$alertShadowDanger: 2px 2px 15px 0 $liteRed;
+
+//details 
+$detailsBgColor: $primaryBackgroundColor;
+$detailsShadow: $primaryShadow;
+
+//cabinet 
+$cabinetBgColor: $primaryBackgroundColor;
+$cabinetShadow: $primaryShadow;

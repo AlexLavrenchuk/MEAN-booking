@@ -1,0 +1,79 @@
+<div class="board">
+
+  <header class="board-header">
+    <div class="board-header-section">
+      <label class="search">
+        <input class="search-input" type="search" (input)="inputChange($event)" (Keyup.enter)=getBulletinsBySearchValue()>
+        <mat-icon class="search-label">search</mat-icon>
+      </label>
+      <div class="view">
+        <button mat-raised-button class="button" type="button" (click)="toggleView(true)">
+          <mat-icon>view_module</mat-icon>
+        </button>
+        <button mat-raised-button class="button" type="button" (click)="toggleView(false)">
+            <mat-icon>view_stream</mat-icon>
+        </button>
+      </div>
+    </div>
+    <mat-paginator 
+      [length]="bulletins?.length" 
+      [pageSize]="pageSize" 
+      [pageSizeOptions]="pageSizeOptions"
+      (page)="pageEvent($event)"
+      >
+    </mat-paginator>
+  </header>
+
+  <main class="board-main" [ngClass]="{'board-main_module': viewModule}">
+    <app-loader class="loader" *ngIf="loader"></app-loader>
+    <p *ngIf="!bulletins?.length && !loader">not found</p>
+    <div class="card" *ngFor="let bulletin of bulletins | slice:pageStart:pageEnd; index as i; trackBy: trackByFn"  [attr.data-bulletin_id]="bulletin._id">
+      <div class="card-header">
+        <div class="user">
+          <div class="user-avatar">
+            <img src="{{ bulletin.userAvatar || '/assets/images/avatar/user-placeholder.png' }}" alt="user-avatar">
+          </div>
+          <div class="user-data">
+            <h4 class="user-name">{{bulletin.userName}}</h4>
+            <span class="user-time">Date: <time [attr.datetime]="bulletin.createDate" >{{bulletin.createDate.getFullYear()}}/{{bulletin.createDate.getMonth()}}/{{bulletin.createDate.getDate()}} {{bulletin.createDate.getHours()}}:{{bulletin.createDate.getMinutes()}}:{{bulletin.createDate.getSeconds()}}</time></span>
+          </div>
+        </div>
+        <div class="card-img" [ngClass]="{'label-new': bulletin.new}">
+          <img src="{{ bulletin.images?.length ? bulletin.images[0] : '/assets/images/picture/noimage.png' }}" alt="image-booking-place">
+        </div>
+      </div>
+      <div class="card-main">
+        <div class="card-description">
+          <h2 class="card-title">{{bulletin.title}}</h2>
+          <div class="stars">
+            <div class="stars-img"></div>
+            <div class="stars-progress" [ngStyle]="{'width': bulletin.starRating + '%'}"></div>
+          </div>
+          <p class="card-text">{{bulletin.descriptionText}}</p>
+        </div>
+        <div class="card-footer">
+          <div class="card-action-data">
+            <button mat-icon-button class="card-button-icon" type="button">
+              <mat-icon>favorite</mat-icon>
+            </button>
+            <span>{{bulletin.currentLike}}</span>
+            <button mat-icon-button class="card-button-icon" type="button">
+              <mat-icon>visibility</mat-icon>
+            </button>
+            <span>{{bulletin.currentVisibility}}</span>
+            <button mat-icon-button class="card-button-icon" type="button">
+              <mat-icon>photo</mat-icon>
+            </button>
+            <span>{{bulletin.images?.length || 0}}</span>
+          </div>
+          <div class="card-action">
+            <button mat-raised-button class="button button-color_white button_second" type="button" (click)="details($event)" >details</button>
+            <button mat-raised-button class="button button-color_white button_primary" type="button" (click)="booking($event)" >booking</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+</div>

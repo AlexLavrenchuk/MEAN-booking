@@ -1,0 +1,252 @@
+@import 'src/assets/sass/vars';
+@import 'src/assets/sass/mixins';
+
+.loader {
+  display: block;
+  width: 3rem;
+  margin: 0 auto;
+}
+
+.board {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  &-header {
+    box-shadow: $cardShadow;
+    border-radius: 0.25rem;
+    padding: 1rem;
+    margin: 0 0 1rem;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    &-section {
+      display: flex;
+      align-items: center;
+    }
+  }
+  &-main {
+    flex-grow: 1;
+    display: grid;
+    grid-gap: 1rem;
+  }
+
+  // module
+  &-main_module {
+    display: grid;
+    
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    // grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    .card {
+      flex-direction: column;
+      height: auto;
+      &-main {
+        padding: 0;
+      }
+      &-img {
+        width: 100%;
+        margin: 0 0 .5rem;
+      }
+      &-description {
+        flex-grow: 1;
+      }
+      &-footer {
+        flex-direction: column;
+      }
+      &-action {
+        display: flex;
+      }
+      .button {
+        &_primary {
+          flex-grow: 1;
+        }
+      }
+
+    }
+  }
+}
+
+.search {
+  position: relative;
+  &-input {
+    border: none;
+    border-radius: 4px;
+    line-height: 36px;
+    padding: 0rem 0.2rem 0rem 2rem;
+    box-shadow: $searchInputShadow;
+    &:focus {
+      @include outline;
+    }
+  }
+  &-label {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    left: 0.3rem;
+    transform: translateY(-50%);
+  }
+}
+
+.view {
+  margin: 0 0 0 .3rem;
+}
+
+.card {
+  box-shadow: $cardShadow;
+  background-color: $cardBgColor;
+  border-radius: 0.25rem;
+  padding: 1rem;
+  height: 20rem;
+  display: flex;
+  &-header {
+
+  }
+  &-img {
+    position: relative;
+    border-radius: 0.25rem;
+    width: 15rem;
+    height: 15rem;
+    border: 1px solid $black;
+    &.label-new {
+      &::before{
+        content: "new";
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: absolute;
+        top: 0.12rem;
+        right: -1.7rem;
+        width: 5rem;
+        height: 1.5rem;
+        color: $yellow;
+        background-color: $liteRed;
+        transform: rotate(45deg);
+        text-align: center;
+        box-shadow: 0 0 0 1.2rem $yellow;
+        clip-path: $cornerRibbon
+      }
+    }
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0.25rem;
+    }
+  }
+  &-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 0 0 0 1rem;
+  }
+  &-description {
+
+  }
+  &-title {
+    font-size: 2rem;
+    padding: 0 0 .5rem;
+  }
+  &-text {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+  }
+  &-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-action-data {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  margin: 0 0 .5rem;
+  &-avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    border: 1px solid $liteBlack;
+    overflow: hidden;
+  }
+  &-data {
+    padding: 0 0 0 1rem;
+  }
+  &-time {
+    font-size: .75rem;
+  }
+}
+
+.stars {
+  position: relative;
+  width: 10rem;
+  height: 2rem;
+  margin: 0 0 .5rem;
+  &-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('/assets/images/img/stars.png') center / cover no-repeat;
+  }
+  &-progress {
+    height: 100%;
+    width: 73%;
+    background-color: $yellow;
+  }
+}
+
+// test line
+.line-wrap {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: -8px;
+  left: 8px;
+  overflow: hidden;
+
+  &:before, 
+  &:after {
+    content: "";
+    position: absolute;
+  }
+  &:before {
+    width: 40px;
+    height: 8px;
+    right: 100px;
+    background: #4D6530;
+    border-radius: 8px 8px 0px 0px;
+  }
+  &:after {
+    width: 8px;
+    height: 40px;
+    right: 0px;
+    top: 100px;
+    background: #4D6530;
+    border-radius: 0px 8px 8px 0px;
+  }
+
+  span {
+    width: 200px;
+    height: 40px;
+    line-height: 40px;
+    position: absolute;
+    top: 30px;
+    right: -50px;
+    z-index: 2;
+    overflow: hidden;
+    transform: rotate(45deg);
+    border: 1px dashed;
+    box-shadow: 0 0 0 3px #57DD43, 0px 21px 5px -18px rgba(0,0,0,0.6);
+    background: #57DD43;
+    text-align: center;
+  }
+}

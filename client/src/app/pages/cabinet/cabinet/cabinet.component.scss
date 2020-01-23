@@ -1,0 +1,149 @@
+@import 'src/assets/sass/vars';
+@import 'src/assets/sass/mixins';
+
+.loaders {
+  display: block;
+  width: 3rem;
+  margin: 0 auto;
+}
+
+.template {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-auto-rows: auto;
+  grid-gap: 2rem;
+}
+.add {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: $cabinetBgColor;
+  box-shadow: $cabinetShadow;
+}
+.form-add {
+  
+  .full-width {
+    display: block;
+  }
+  &-title {
+    font-size: 2rem;
+    margin: 0 0 2rem;
+  }
+  label {
+    display: flex;
+    flex-direction: column;
+  }
+  label + label {
+    margin: 1rem 0 0;
+  }
+
+  &-action {
+    padding: 1rem 0;
+  }
+}
+input[type="file"] {
+  @include visually-hidden;
+}
+input[type=file]:focus + label {
+  color: $liteRed;
+}
+
+.drag-field {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  border: 1px dashed $primaryColor;
+  border-radius: 0.25rem;
+  margin: 0 0 1rem;
+}
+.select-file {
+
+  &-label {
+    cursor: pointer;
+    color: $primaryColor;
+    transition: color .2s;
+    &:hover {
+      color: $liteRed;
+    }
+  }
+
+  &-button {
+    z-index: -1;
+  }
+}
+.dragover {
+  background-color: khaki;
+}
+.images-loaded {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 5rem);
+  grid-auto-rows: 5rem;
+  grid-gap: .25rem;
+  margin: 0 0 1rem;
+  &:empty {
+    margin: 0;
+  }
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: .25rem;
+  }
+}
+
+.added {
+  padding: 1rem;
+  border-radius: 0.25rem;
+  background-color: $cabinetBgColor;
+  box-shadow: $cabinetShadow;
+  &-title {
+    font-size: 2rem;
+    margin: 0 0 2rem;
+  }
+  .list {
+    .item {
+      margin: 0 0 1rem;
+      padding: 1rem;
+      border-radius: 0.25rem;
+      background-color: $cabinetBgColor;
+      box-shadow: $cabinetShadow;
+      &-title {
+        font-size: 1.5rem;
+        margin: 0 0 .5rem;
+      }
+      &-description {
+        margin: 0 0 .5rem;
+      }
+      &-action {
+        display: flex;
+        justify-content: flex-end;
+        .button {
+
+        }
+      }
+    }
+  }
+  .template-img {
+    display: grid;;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 150px));
+    grid-gap: 10px;
+    align-items: center;
+    justify-items: left;
+    &:not(:empty) {
+      margin-bottom: 20px;
+    }
+
+    &-item {
+      max-height: 200px;
+      overflow: hidden;
+      border-radius: .25rem;
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center;
+      }
+    }
+
+  }
+}

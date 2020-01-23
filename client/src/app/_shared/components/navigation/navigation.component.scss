@@ -1,0 +1,28 @@
+@import "src/assets/sass/vars";
+
+.nav {
+  text-transform: uppercase;
+  color: $white;
+  font-weight: $boldFont;
+}
+.nav-list {
+ display: flex;
+ align-items: center;
+}
+.nav-item + .nav-item {
+  margin: 0 0 0 1rem;
+}
+.nav-item {
+  
+  a {
+    transition: color .2s;
+    &:hover,
+    &:focus {
+      color: $liteRed;
+    }
+  }
+  
+  .active {
+    text-decoration: underline;
+  }
+}

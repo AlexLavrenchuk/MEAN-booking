@@ -1,0 +1,18 @@
+<section class="modal" *ngIf="view" (click)="areaOutside($event)">
+  <div class="modal-window">
+    <button class="button-close" type="button" (click)="close()"></button>
+    <header class="header-modal">
+        <h2 class="modal-title">{{data?.title}}</h2>
+        <h2 *ngIf="data?.question" class="modal-title">{{data?.question}}</h2>
+    </header>
+    <main class="main-modal">
+      <p class="modal-description">{{data?.descriptionText}}</p>
+    </main>
+    <footer class="footer-modal">
+      <div class="modal-action">
+        <button mat-raised-button class="button button-color_white button_primary" type="button" (click)="verification()">Yes</button>
+        <button mat-raised-button class="button button-color_white button_second" type="button"  (click)="close()">No</button>
+      </div>
+    </footer>
+  </div>
+</section>

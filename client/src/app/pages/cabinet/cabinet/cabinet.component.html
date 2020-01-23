@@ -1,0 +1,71 @@
+<div class="template">
+  <section class="add">
+    <form class="form-add" [formGroup]="addForm" (ngSubmit)="onSubmit()">
+      
+      <h2 class="form-add-title">Create new booking place</h2>
+
+      <mat-form-field class="full-width">
+        <input matInput type="text" placeholder="Title" formControlName="title">
+        <mat-error *ngIf="f.title.errors && f.title.errors.required">
+          Title is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+    
+      <mat-form-field class="full-width">
+        <textarea matInput type="text" placeholder="Description" formControlName="description"></textarea>
+        <mat-error *ngIf="f.description.errors && f.description.errors.required">
+          Description is <strong>required</strong>
+        </mat-error>
+      </mat-form-field>
+
+      <div class="full-width">
+        <div class="drag-field" #dragField [ngClass]="{'dragover': classDragover}" 
+            (dragover)="addClass()"
+            (dragenter)="addClass()"
+            (dragleave)="removeClass($event)"
+            (drop)="addImages($event)"
+        >
+          <div class="select-file">
+            <input id="select-file" type="file" name="file" multiple (change)="addPhoto($event)" formControlName="file">
+            <label for="select-file" class="select-file-label">
+              Select a file
+            </label>
+          </div>
+          <span>&#8194;or drag it here</span> 
+        </div>
+        <div #imagesLoaded class="images-loaded">
+
+        </div>
+          
+      </div>
+
+      <div class="form-action">
+        <button *ngIf="!(loading)" mat-raised-button color="primary" type="submit" [disabled]="addForm.invalid">Save</button>
+        <app-loader class="loaders" *ngIf="loading"></app-loader>
+      </div>
+
+    </form>
+
+  </section>
+  
+  <section class="added">
+    <h2 class="added-title">Added your booking place</h2>
+    <app-loader class="loaders" *ngIf="loadData"></app-loader>
+    <p *ngIf="!bulletinsUser?.length && !loadData">you don't have booking place</p>
+    <ul class="list" *ngIf="bulletinsUser && !loadData">
+      <li class="item" *ngFor="let bulletinUser of bulletinsUser | slice:pageStart:pageEnd; index as i; trackBy: trackByFn"  [attr.data-bulletin_id]="bulletinUser._id">
+        <h4 class="item-title">{{bulletinUser.title}}</h4>
+        <p class="item-description">{{bulletinUser.descriptionText}}</p>
+        <ul class="template-img" *ngIf="bulletinUser?.images.length">
+          <li class="template-img-item" *ngFor="let img of bulletinUser.images; index as i">
+            <img src="{{ bulletinUser.images[i] || '/assets/images/picture/noimage.png' }}" alt="image-{{i+1}}">
+          </li>
+        </ul>
+        <div class="item-action">
+          <button mat-raised-button class="button button-color_white button_second" type="button" (click)="change($event)" >change</button>
+          <button mat-raised-button class="button button-color_white button_primary" type="button" (click)="deleteBulletin($event)" >delete</button>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>
