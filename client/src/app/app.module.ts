@@ -1,12 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { 
-  HttpClientModule, 
-  HTTP_INTERCEPTORS 
-} from '@angular/common/http';
-
-// used to create fake backend
-// import { fakeBackendProvider } from './_shared/helpers/fake-backend';
+import { HttpClientModule } from '@angular/common/http';
 
 // app-routing
 import { AppRoutingModule } from './app-routing.module';
@@ -18,9 +12,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AuthGuard } from './_shared/guard/auth.guard';
 import { AdminGuard } from './_shared/guard/admin.guard';
 
-// helpers
-// import { JwtInterceptor } from './_shared/helpers/jwt.interceptor';
-// import { ErrorInterceptor } from './_shared/helpers/error.interceptor';
 
 // services
 import { AuthenticationService } from './_shared/services/authentication.service';
@@ -49,19 +40,6 @@ import { ModalService } from './_shared/services/modal.service';
     HeaderService,
     AlertService,
     ModalService,
-    // { 
-    //   provide: HTTP_INTERCEPTORS, 
-    //   useClass: JwtInterceptor, 
-    //   multi: true 
-    // },
-    // { 
-    //   provide: HTTP_INTERCEPTORS, 
-    //   useClass: ErrorInterceptor, 
-    //   multi: true 
-    // },
-
-    // provider used to create fake backend
-    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
