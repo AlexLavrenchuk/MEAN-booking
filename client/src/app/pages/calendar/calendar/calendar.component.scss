@@ -9,25 +9,35 @@
   margin-bottom: 10px;
 }
 .form-container {
-  display: flex;
-  justify-content: space-between;
+  margin-bottom: 20px;
+  .width {
+    width: 50%;
+  }
+}
+.form-action {
+  padding: 20px 0;
 }
 .time-list {
   position: relative;
+  height: calc(540px * 2);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   .container-to-event {
     position: absolute;
     top:0;
     left: 45px;
     right: 0;
     bottom: 0;
-    border: 1px solid red;
     z-index: 1;
     .event {
       background-color: #E2ECF5;
       border-left: 3px solid #6E9ECF;
       position: absolute;
-      height: 30px;
       width: 100%;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
   }
 }
@@ -35,7 +45,6 @@
   border-top: 1px solid black;
   padding-left: 45px;
   position: relative;
-  height: 50px;
 }
 .time {
   position: absolute;

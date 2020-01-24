@@ -1,30 +1,59 @@
 <h2 class="title">calendar</h2>
 
-<form [formGroup]="addFormEvent" (ngSubmit)="onSubmit()" class="form-container">
-  <mat-form-field>
-    <input matInput placeholder="Title">
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="start">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
-
-  <mat-form-field>
-    <mat-select placeholder="end">
-      <mat-option value="option">Option</mat-option>
-    </mat-select>
-  </mat-form-field>
+<form [formGroup]="addFormEvent" (ngSubmit)="addNewEvent()" class="form-container">
+  <p>
+    <mat-form-field class="width">
+      <input matInput type="text" placeholder="Title event" formControlName="title">
+      <mat-error *ngIf="addFormEvent.controls.title.errors && addFormEvent.controls.title.errors">
+        User name is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  
+  <p>
+    <mat-form-field class="width">
+      <mat-label>Start</mat-label>
+      <mat-select formControlName="start">
+        <mat-option *ngFor="let time of timeSet" [value]="time.value">
+          {{time.time}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addFormEvent.controls.start.errors && addFormEvent.controls.start.errors.required">
+        Type is <strong>required</strong>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  
+  <p>
+    <mat-form-field class="width">
+      <mat-label>End</mat-label>
+      <mat-select formControlName="end">
+        <mat-option *ngFor="let time of timeSet" [value]="time.value">
+          {{time.time}}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.required">
+        Type is <strong>required</strong>
+      </mat-error>
+      <mat-error *ngIf="addFormEvent.controls.end.errors && addFormEvent.controls.end.errors.lessThenStart">
+        Less than a <strong>start</strong> or <strong>equals start</strong>
+      </mat-error>
+    </mat-form-field>
+  </p>
+  <p class="form-action">
+    <button mat-raised-button color="primary" type="submit" [disabled]="addFormEvent.invalid">add event</button>
+  </p>
 </form>
+
+  
 
 <div class="board">
   <app-loader class="loader" *ngIf="loader"></app-loader>
-  <ul class="time-list" *ngIf="!loader">
-    <li class="container-to-event">
-      <div class="event" [ngStyle]="{'top': '20px'}">
+  <ul class="time-list">
+    <li class="container-to-event" #eventsContainer>
+      <!-- <div class="event" [ngStyle]="{'top': '20px'}">
         <p>task name</p>
-      </div>
+      </div> -->
     </li>
     <li class="time-space" *ngFor="let set of timeSet; index as i; trackBy: trackByFn">
       <span class="time">{{set.time}}</span>

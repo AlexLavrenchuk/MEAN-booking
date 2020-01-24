@@ -1,4 +1,4 @@
-const {Schema, model, Types} = require('mongoose');
+const {Schema, model} = require('mongoose');
 
 const schema = new Schema({
   start: {type: Number, required: true},
@@ -6,4 +6,4 @@ const schema = new Schema({
   title: {type: String, required: true},
 });
 
-module.exports = model("Bulletin", schema);
+module.exports = model("Event", schema);

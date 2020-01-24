@@ -10,6 +10,6 @@ export class EventsService {
 		return this.http.get(`/api/event/getAll`);
   }
   addNew(newEvent: any) {
-		return this.http.get(`/api/event/addNev`, newEvent);
+		return this.http.post(`/api/event/addNew`, newEvent);
 	}
 }

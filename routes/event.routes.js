@@ -6,7 +6,7 @@ const Event = require("../models/Event");
 // /api/event/getAll
 router.get("/getAll", async (req, res)=> {
   try {
-    const events = await event.find();
+    const events = await Event.find();
     
     res.json(events);
 
@@ -19,12 +19,13 @@ router.get("/getAll", async (req, res)=> {
 // /api/event/addNew
 router.post("/addNew", async (req, res)=> {
   try {
-    const {title, start, start} = req.body;
-
+    const { title, start, end } = req.body;
+    
+    const duration = end - start;
     const event = new Event({
       start,
       title,
-      start
+      duration
     });
     await event.save();
     res.status(201).json({massage: "add new event"});
@@ -34,7 +35,7 @@ router.post("/addNew", async (req, res)=> {
 });
 
 // /api/event/delete/:id
-router.delete("/delete/:id", auth, async (req, res)=> {
+router.delete("/delete/:id", async (req, res)=> {
   try {
     const event = await Event.findById(req.params.id);
     await event.remove();
