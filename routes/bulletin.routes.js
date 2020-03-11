@@ -53,7 +53,8 @@ router.post("/saveWithPhoto", auth, async (req, res)=> {
     const {title, descriptionText} = JSON.parse(req.body.data);
     const imageArr =  req.files;
 
-    let newArrImg = imageArr.map(img => `/assets/images/picture/${img.originalname}`);
+    console.log(imageArr);
+    let newArrImg = imageArr.map(img => `assets/images/picture/${img.filename}`);
 
     const bulletin = new Bulletin({
       owner: req.user.userId,
@@ -62,7 +63,7 @@ router.post("/saveWithPhoto", auth, async (req, res)=> {
       images: newArrImg,
     });
     await bulletin.save();
-    res.status(201).json({message: "add new bulletin"});
+    res.status(201).json(bulletin);
   } catch (e) {
     res.status(500).json({message: "Something went wrong"});
   }

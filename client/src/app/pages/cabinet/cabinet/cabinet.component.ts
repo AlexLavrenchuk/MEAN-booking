@@ -145,6 +145,7 @@ export class CabinetComponent implements OnInit {
       .pipe(first())
       .subscribe(
         (newBulletin: any) => {
+          console.log(newBulletin);
           this.alertService.success(`Congratulation! Your ${newBulletin.title} added to base`);
           this.imagesLoaded.nativeElement.innerHTML = "";
           this.addForm.reset();
