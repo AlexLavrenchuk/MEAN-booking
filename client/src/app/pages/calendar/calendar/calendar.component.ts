@@ -73,7 +73,7 @@ export class CalendarComponent implements OnInit {
         this.loader = false;
       },
       error => {
-        this.alertService.error(error.error.massage || "Error")
+        this.alertService.error(error.error.message || "Error")
         this.loader = false;
       }
     );
@@ -87,11 +87,11 @@ export class CalendarComponent implements OnInit {
     this.eventsService.addNew(this.addFormEvent.value).pipe(first()).subscribe(
       (response: any) => { 
         this.cleaningInputForm();
-        this.alertService.success(response.massage);
+        this.alertService.success(response.message);
         this.getEvents();
       },
       error => {
-        this.alertService.error(error.error.massage || "Error");
+        this.alertService.error(error.error.message || "Error");
       }
     );
   }

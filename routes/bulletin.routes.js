@@ -15,7 +15,7 @@ router.get("/getAll", async (req, res)=> {
     res.json(bulletinAll);
 
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -33,7 +33,7 @@ router.get("/getSearch/:search", async (req, res)=> {
     }
     res.json(searchBulletins);
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -43,7 +43,7 @@ router.get("/getByCurrentUser", auth, async (req, res)=> {
     const bulletinAll = await Bulletin.find( { owner: req.user.userId } );
     res.json(bulletinAll);
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -62,9 +62,9 @@ router.post("/saveWithPhoto", auth, async (req, res)=> {
       images: newArrImg,
     });
     await bulletin.save();
-    res.status(201).json({massage: "add new bulletin"});
+    res.status(201).json({message: "add new bulletin"});
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -79,9 +79,9 @@ router.post("/saveWithoutPhoto", auth, async (req, res)=> {
       descriptionText: descriptionText,
     });
     await bulletin.save();
-    res.status(201).json({massage: "add new bulletin"});
+    res.status(201).json({message: "add new bulletin"});
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -92,7 +92,7 @@ router.get("/getById/:id", auth, async (req, res)=> {
     res.json(bulletin);
 
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -103,7 +103,7 @@ router.delete("/delete/:id", auth, async (req, res)=> {
     await bulletin.remove();
     res.json(bulletin);
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 

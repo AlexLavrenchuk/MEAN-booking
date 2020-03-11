@@ -11,7 +11,7 @@ router.get("/getAll", async (req, res)=> {
     res.json(events);
 
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -28,9 +28,9 @@ router.post("/addNew", async (req, res)=> {
       duration
     });
     await event.save();
-    res.status(201).json({massage: "add new event"});
+    res.status(201).json({message: "add new event"});
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -41,7 +41,7 @@ router.delete("/delete/:id", async (req, res)=> {
     await event.remove();
     res.json(event);
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 

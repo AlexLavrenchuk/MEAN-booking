@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { addGuardAuthToHeaders } from './../helpers/addGuardAuthToHeaders';
 
 import { User } from '../models/user';
 
@@ -26,4 +27,8 @@ export class UserService {
     // delete(id: number) {
     //     return this.http.delete(`/users/` + id);
     // }
+
+    getCurrentUser() {
+        return this.http.get<User>(`/api/user/getCurrentUser`, addGuardAuthToHeaders());
+    }
 }

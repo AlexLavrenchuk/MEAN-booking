@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 
 import { UserService } from './../../services/user.service';
 import { AuthenticationService } from './../../services/authentication.service';
+import { User } from './../../models/user';
 
 
 @Component({
@@ -13,7 +14,7 @@ import { AuthenticationService } from './../../services/authentication.service';
   styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
-  public currentUser: any;
+  public currentUser: User;
   public userAvatar: string;
 
   constructor(
@@ -24,15 +25,15 @@ export class HeaderComponent implements OnInit {
     ) { }
 
   ngOnInit() {
-    // this.getCurrentUser();
+    this.getCurrentUser();
   }
 
-  // private getCurrentUser(): void {
-  //   this.userService.getCurrentUser().pipe(first()).subscribe(currentUserResponse => {
-  //     this.currentUser = currentUserResponse;
-  //     this.userAvatar = this.currentUser.userAvatar || "/assets/images/avatar/user-placeholder.png";
-  //   })
-  // }
+  private getCurrentUser(): void {
+    this.userService.getCurrentUser().pipe(first()).subscribe((currentUserResponse: User) => {
+      this.currentUser = currentUserResponse;
+      this.userAvatar = this.currentUser.userAvatar;
+    }, error => console.log(error.error.message));
+  }
 
   logoutUser() {
     this.authenticationService.logout()

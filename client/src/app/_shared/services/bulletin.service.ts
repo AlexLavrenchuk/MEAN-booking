@@ -1,14 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { checkType } from './../helpers/checkTypeObject';
+import { addGuardAuthToHeaders } from './../helpers/addGuardAuthToHeaders';
 
 @Injectable()
 export class BulletinService {
 	constructor(private http: HttpClient) { }
-
-	private addGuardAuthToHeaders() {
-		return {headers: new HttpHeaders({'Authorization': `Bearer ${JSON.parse(localStorage.getItem("currentUser")).token}`})};
-	}
 
 	getAll() {
 		return this.http.get(`/api/bulletin/getAll`);
@@ -18,15 +15,15 @@ export class BulletinService {
 	}
 
 	getById(id: string) {
-		return this.http.get(`/api/bulletin/getById/` + id, this.addGuardAuthToHeaders());
+		return this.http.get(`/api/bulletin/getById/` + id, addGuardAuthToHeaders());
 	}
 
 	getByCurrentUser() {
-		return this.http.get(`/api/bulletin/getByCurrentUser`, this.addGuardAuthToHeaders());
+		return this.http.get(`/api/bulletin/getByCurrentUser`, addGuardAuthToHeaders());
 	}
 
 	addNew(newBulletin: any) {
-		const httpOptions = this.addGuardAuthToHeaders();
+		const httpOptions = addGuardAuthToHeaders();
 
 		if(checkType(newBulletin) === 'formdata') { //check type object
 			httpOptions.headers.set('Content-Type', 'multipart/form-data');
@@ -40,6 +37,6 @@ export class BulletinService {
 	// }
 
 	delete(id: string) {
-		return this.http.delete(`/api/bulletin/delete/` + id, this.addGuardAuthToHeaders());
+		return this.http.delete(`/api/bulletin/delete/` + id, addGuardAuthToHeaders());
 	}
 }

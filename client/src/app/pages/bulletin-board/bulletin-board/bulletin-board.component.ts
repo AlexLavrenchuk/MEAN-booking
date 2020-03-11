@@ -100,7 +100,7 @@ export class BulletinBoardComponent implements OnInit {
         this.loader = false;
       },
       error => {
-        this.alertService.error(error.error.massage)
+        this.alertService.error(error.error.message)
         this.loader = false;
       }
     );
@@ -115,7 +115,7 @@ export class BulletinBoardComponent implements OnInit {
       this.bulletinService.getOnlySearch(this.searchValue).subscribe((searchBulletins: []) => {
         this.bulletins = this.convertStringDataInObjectData(searchBulletins);
       },
-        error => this.alertService.error(error.error.massage || "no result search")
+        error => this.alertService.error(error.error.message || "no result search")
       )
     } else {
       this.bulletinAllUsers();
@@ -159,6 +159,6 @@ export class BulletinBoardComponent implements OnInit {
           },
           error => this.alertService.error(error)
         )
-    }, error => this.alertService.error(error.error.massage));
+    }, error => this.alertService.error(error.error.message));
   }
 }

@@ -71,7 +71,7 @@ export class CabinetComponent implements OnInit {
             error => this.alertService.error(error)
           )
       }, 
-      error=> this.alertService.error(error.error.massage || "Ops...") 
+      error=> this.alertService.error(error.error.message || "Ops...") 
     )
   }
 
@@ -96,7 +96,7 @@ export class CabinetComponent implements OnInit {
         if(error.status === 401) {
           this.router.navigateByUrl("/auth");
         }
-        this.alertService.error(error.error.massage);
+        this.alertService.error(error.error.message);
         this.loadData = false;
       }
     );
@@ -153,7 +153,7 @@ export class CabinetComponent implements OnInit {
           this.getUserBulletins();
         },
         error => {
-          this.alertService.error(error.error.massage || "Error don't save");
+          this.alertService.error(error.error.message || "Error don't save");
           this.loading = false;
         });
   }

@@ -21,7 +21,7 @@
       <a routerLink="/cabinet" class="user-info-name">{{currentUser?.userName}}</a>
 
       <div class="user-info-image">
-        <img src="{{userAvatar}}" alt="avatar">
+        <img src="{{userAvatar || '/assets/images/avatar/user-placeholder.png'}}" alt="avatar">
       </div>
       
     </div>

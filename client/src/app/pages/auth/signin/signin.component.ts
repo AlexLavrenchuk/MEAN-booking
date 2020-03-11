@@ -55,7 +55,7 @@ export class SigninComponent implements OnInit {
             this.router.navigate([this.returnUrl]);
           },
           error => {
-            this.alertService.error(error.error.massage);
+            this.alertService.error(error.error.message);
             this.loading = false;
           });
   }

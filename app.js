@@ -20,8 +20,8 @@ app.use(express.static('public'));
 
 app.use("/api/auth", require("./routes/auth.routes"));
 app.use("/api/bulletin", require("./routes/bulletin.routes"));
+app.use("/api/user", require("./routes/user.routes"));
 app.use("/api/event", require("./routes/event.routes"));
-app.use("/api/c", require("./routes/console.log"));
 
 const PORT = config.get("port") || 5000;
 
@@ -34,7 +34,7 @@ async function start() {
     });
     app.listen(PORT, () => console.log(`App hes been started on port ${PORT}...`));
   } catch (e) {
-    console.log("Server Error", e.massage);
+    console.log("Server Error", e.message);
     process.exit(1);
   }
 }

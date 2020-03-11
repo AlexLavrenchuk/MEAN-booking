@@ -78,7 +78,7 @@ export class SignupComponent implements OnInit {
           },
           error => {
             console.log(error);
-            this.alertService.error(error.error.massage);
+            this.alertService.error(error.error.message);
             this.loading = false;
           });
   }
@@ -94,7 +94,7 @@ export class SignupComponent implements OnInit {
         },
         error => {
           console.log(error);
-          this.alertService.error(error.error.massage);
+          this.alertService.error(error.error.message);
           this.loading = false;
         });
   }

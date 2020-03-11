@@ -20,7 +20,7 @@ async (req, res)=> {
     if(!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        massage: "incorrect data during registration"
+        message: "incorrect data during registration"
       });
     }
     
@@ -29,7 +29,7 @@ async (req, res)=> {
     const candidate = await User.findOne({ userName }); // {userName: userName}
 
     if(candidate) {
-      return res.status(400).json({massage: "such user already exists"});
+      return res.status(400).json({message: "such user already exists"});
     }
 
     const hashedPassword = await bcrypt.hash(password, 12);
@@ -41,11 +41,11 @@ async (req, res)=> {
     });
 
     await user.save();
-    res.status(201).json({massage: "User save"});
+    res.status(201).json({message: "User save"});
 
     
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 });
 
@@ -62,7 +62,7 @@ async (req, res)=> {
     if(!errors.isEmpty()) {
       return res.status(400).json({
         errors: errors.array(),
-        massage: "incorrect data during login"
+        message: "incorrect data during login"
       });
     }
 
@@ -70,13 +70,13 @@ async (req, res)=> {
     const user = await User.findOne({ userName });
 
     if(!user) {
-      return res.status(400).json({massage: "User is not found"});
+      return res.status(400).json({message: "User is not found"});
     }
 
     const isMatch = await bcrypt.compare(password, user.password);
 
     if(!isMatch) {
-      res.status(400).json({massage: "incorrect password"});
+      res.status(400).json({message: "incorrect password"});
     }
     const token = jwt.sign( 
       { userId: user._id,
@@ -88,7 +88,7 @@ async (req, res)=> {
     res.json({ token, userId: user._id, userType: user.type }); // status 200 default value;
 
   } catch (e) {
-    res.status(500).json({massage: "Something went wrong"});
+    res.status(500).json({message: "Something went wrong"});
   }
 
 });
