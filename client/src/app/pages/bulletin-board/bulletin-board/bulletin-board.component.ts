@@ -13,12 +13,28 @@ import { AlertService } from 'src/app/_shared/services/alert.service';
 import { ModalService } from 'src/app/_shared/services/modal.service';
 import { BulletinService } from 'src/app/_shared/services/bulletin.service';
 
+//amination
+import { state, animation, trigger, animateChild, group, transition, animate, style, query, keyframes } from '@angular/animations';
+
 @Component({
   selector: 'app-bulletin-board',
   templateUrl: './bulletin-board.component.html',
-  styleUrls: ['./bulletin-board.component.scss']
+  styleUrls: ['./bulletin-board.component.scss'],
+  animations: [
+    trigger("changePaginator", [
+      state("void", style({opacity: 0, transform: "scale(0.8)"})),
+
+      transition(':enter', [
+        animate('500ms ease', keyframes([
+          style({ opacity: 0, transform: "scale(0.8)",  offset: 0}),
+          style({ opacity: .7, transform: "scale(1.05)", offset: 0.7}),
+          style({ opacity: 1, transform: "scale(1)", offset: 1.0})
+        ])),
+      ]),
+    ])
+  ]
 })
-export class BulletinBoardComponent implements OnInit{
+export class BulletinBoardComponent implements OnInit {
   private subscription: Subscription;
   loader: boolean = false;
 
@@ -31,19 +47,18 @@ export class BulletinBoardComponent implements OnInit{
   pageSize: number = 5;
   pageSizeOptions: number[] = [5, 10, 15, 20];
 
-  pageStart:number = 0;
-  pageEnd:number = 5;
+  pageStart: number = 0;
+  pageEnd: number = 5;
   viewModule: boolean = true;
   searchValue: string = "";
 
   constructor(
     private router: Router,
-    private userService: UserService, 
+    private userService: UserService,
     private alertService: AlertService,
     private modalService: ModalService,
     private bulletinService: BulletinService,
-    ) {
-  }
+  ) { }
 
   ngOnInit() {
     // this.loadAllUsers();
@@ -54,7 +69,6 @@ export class BulletinBoardComponent implements OnInit{
     //     this.bulletinService.delete(data.data.id);
     //   }
     // });
-    
   }
 
   ngOnDestroy() {
@@ -72,7 +86,7 @@ export class BulletinBoardComponent implements OnInit{
   //   });
   // }
   private convertStringDataInObjectData(arr: []) {
-    return arr.map((bulletin: any)=> {
+    return arr.map((bulletin: any) => {
       bulletin.createDate = new Date(bulletin.createDate);
       return bulletin;
     })
@@ -81,7 +95,7 @@ export class BulletinBoardComponent implements OnInit{
   private bulletinAllUsers() {
     this.loader = true;
     this.bulletinService.getAll().pipe(first()).subscribe(
-      (response: any) => { 
+      (response: any) => {
         this.bulletins = this.convertStringDataInObjectData(response);
         this.loader = false;
       },
@@ -97,16 +111,16 @@ export class BulletinBoardComponent implements OnInit{
     console.log([].indexOf(1));
   }
   private getBulletinsBySearchValue() {
-    if(this.searchValue) {
+    if (this.searchValue) {
       this.bulletinService.getOnlySearch(this.searchValue).subscribe((searchBulletins: []) => {
         this.bulletins = this.convertStringDataInObjectData(searchBulletins);
       },
-      error=> this.alertService.error(error.error.massage || "no result search")
+        error => this.alertService.error(error.error.massage || "no result search")
       )
     } else {
       this.bulletinAllUsers();
     }
-    
+
   }
 
   private pageEvent(e) {
@@ -128,23 +142,23 @@ export class BulletinBoardComponent implements OnInit{
   private booking(event) {
     let id = event.target.closest(".card").dataset.bulletin_id;
 
-    this.bulletinService.getById(id).pipe(first()).subscribe(bulletin => { 
+    this.bulletinService.getById(id).pipe(first()).subscribe(bulletin => {
       this.modalService.open(bulletin);
       this.modalService.getData()
-          .pipe(first())
-          .subscribe(
-            data => {
-              if(data.type === "approval") {
-                this.bulletinService.getById(id).pipe(first()).subscribe((response: any) => {
-                  this.alertService.success(`You booking place ${response._id}`)
-                  console.log(response);
-                },
+        .pipe(first())
+        .subscribe(
+          data => {
+            if (data.type === "approval") {
+              this.bulletinService.getById(id).pipe(first()).subscribe((response: any) => {
+                this.alertService.success(`You booking place ${response._id}`)
+                console.log(response);
+              },
                 error => this.alertService.error(error)
-                )
-              }
-            }, 
-            error => this.alertService.error(error)
-          )
-    });
+              )
+            }
+          },
+          error => this.alertService.error(error)
+        )
+    }, error => this.alertService.error(error.error.massage));
   }
 }

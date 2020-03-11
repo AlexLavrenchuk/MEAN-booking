@@ -37,9 +37,12 @@
     
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     // grid-template-columns: repeat(auto-fit, minmax(300px, 350px));
+    justify-items: center;
     .card {
       flex-direction: column;
       height: auto;
+      max-width: 400px;
+      width: 100%;
       &-main {
         padding: 0;
       }

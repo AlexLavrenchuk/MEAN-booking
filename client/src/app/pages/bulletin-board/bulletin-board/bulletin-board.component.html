@@ -11,7 +11,7 @@
           <mat-icon>view_module</mat-icon>
         </button>
         <button mat-raised-button class="button" type="button" (click)="toggleView(false)">
-            <mat-icon>view_stream</mat-icon>
+          <mat-icon>view_stream</mat-icon>
         </button>
       </div>
     </div>
@@ -27,7 +27,7 @@
   <main class="board-main" [ngClass]="{'board-main_module': viewModule}">
     <app-loader class="loader" *ngIf="loader"></app-loader>
     <p *ngIf="!bulletins?.length && !loader">not found</p>
-    <div class="card" *ngFor="let bulletin of bulletins | slice:pageStart:pageEnd; index as i; trackBy: trackByFn"  [attr.data-bulletin_id]="bulletin._id">
+    <div @changePaginator class="card" *ngFor="let bulletin of bulletins | slice:pageStart:pageEnd; index as i; trackBy: trackByFn" [attr.data-bulletin_id]="bulletin._id">
       <div class="card-header">
         <div class="user">
           <div class="user-avatar">
@@ -35,7 +35,7 @@
           </div>
           <div class="user-data">
             <h4 class="user-name">{{bulletin.userName}}</h4>
-            <span class="user-time">Date: <time [attr.datetime]="bulletin.createDate" >{{bulletin.createDate.getFullYear()}}/{{bulletin.createDate.getMonth()}}/{{bulletin.createDate.getDate()}} {{bulletin.createDate.getHours()}}:{{bulletin.createDate.getMinutes()}}:{{bulletin.createDate.getSeconds()}}</time></span>
+            <span class="user-time">Date: <time [attr.datetime]="bulletin.createDate" >{{ bulletin.createDate | date: 'short' }}</time></span>
           </div>
         </div>
         <div class="card-img" [ngClass]="{'label-new': bulletin.new}">
