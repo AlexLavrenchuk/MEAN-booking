@@ -1,11 +1,12 @@
-@import './../../../../assets/sass/vars';
+// @import './../../../../assets/sass/vars';
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 2rem 3rem;
-  background-color: $headerBackground;
+  // background-color: $headerBackground;
+  background-color: var(--primary-color);
 
   .logo {
     max-width: 3rem;
@@ -26,7 +27,8 @@
         width: 2.5rem;
         height: 2.5rem;
         border-radius: 50%;
-        border: 1px solid $liteBlack;
+        border: 1px solid black;
+        // border: 1px solid $liteBlack;
         overflow: hidden;
         margin: 0 0 0 .5rem;
       }
